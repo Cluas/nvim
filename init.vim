@@ -1,7 +1,6 @@
 syntax on
 call plug#begin()
 
-"-------------------=== Code/Project navigation ===-------------
 Plug 'majutsushi/tagbar'                  " show tags in a bar (functions etc) for easy browsing
 Plug 'vim-airline/vim-airline'            " make statusline awesome
 Plug 'vim-airline/vim-airline-themes'     " themes for statusline
@@ -75,18 +74,9 @@ let s:header = [
 	      \ '|                   ^_^                     |',
 	      \ '|               Clean Code.                 |',
 	      \ '|                                           |',
-	      \ '|            GitHub: Cluas                  |',
+	      \ '|     GitHub: https://github.com/Cluas      |',
 	      \ '+-------------------------------------------+',
 	      \ ]
-
-"let s:footer = [
-      "\ '+-------------------------------------------+',
-      "\ '|                   ^_^                     |',
-      "\ '|    Talk is cheap, Show me the code.       |',
-      "\ '|                                           |',
-      "\ '|            GitHub: Cluas                  |',
-      "\ '+-------------------------------------------+',
-      "\ ]
 
 function! s:center(lines) abort
   let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
@@ -96,7 +86,6 @@ function! s:center(lines) abort
 endfunction
 
 let g:startify_custom_header = s:center(s:header)
-"let g:startify_custom_footer = s:center(s:footer)
 
 " Defx setup ================================================================{{{
 
@@ -132,7 +121,6 @@ call defx#custom#option('_', {
 " color for cursor holding highlight
 hi default CocHighlightText guibg=#8a8a8a guifg=#211F1C
 let g:airline#extensions#coc#enabled = 1
-"hi default CocHighlightText ctermbg=#8a8a8a ctermfg=#211F1C
 
 " color for coc-diagnostic
 hi link CocErrorSign Error
@@ -251,17 +239,6 @@ let g:go_def_mapping_enabled = 0
 
 
 " Linters ==================================================================={{{
-"let g:ale_linters = {
-      "\   'python': ['flake8'],
-      "\   'go': ['golangci-lint'],
-      "\ }
-"let g:ale_go_golangci_lint_package = 1
-"let g:ale_go_golangci_lint_options = '--fast -E golint --exclude-use-default=false'
-"let g:ale_python_flake8_options = '--ignore=F821,E501'
-"let g:ale_python_pylint_options = '--disable=C0111,C0301,R0902,R0903,R0913,R0914,R0915,E1101,E1004'
-"let g:ale_sign_error = '⤫'
-"let g:ale_sign_warning = '⚠'
-
 let g:ale_fixers = {'python': ['black', 'isort']}
 let g:ale_python_black_options="-t py27 -l 120 --fast"
 let g:ale_python_isort_options="-e -m 4 -w 120"

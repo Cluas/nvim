@@ -1,82 +1,90 @@
+scriptencoding 'utf8'
 syntax on
 call plug#begin()
 
-Plug 'majutsushi/tagbar'                  " show tags in a bar (functions etc) for easy browsing
-Plug 'vim-airline/vim-airline'            " make statusline awesome
-Plug 'vim-airline/vim-airline-themes'     " themes for statusline
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'powerline/powerline'
-Plug 'tpope/vim-fugitive'                 " A Git wrapper so awesome
-Plug 'mhinz/vim-startify'                 " The fancy start screen for Vim
+Plug 'mhinz/vim-startify'
 Plug 'w0ng/vim-hybrid'
-Plug 'scrooloose/nerdcommenter'           " comment tools
+Plug 'scrooloose/nerdcommenter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-Plug 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
-Plug 'jiangmiao/auto-pairs'               " Vim plugin, insert or delete brackets, parens, quotes in pair
-Plug 'mbbill/undotree'                    " The undo history visualizer
-Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mbbill/undotree'
+Plug 'dense-analysis/ale'
+Plug 'w0ng/vim-hybrid'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/vader.vim'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'kristijanhusak/defx-git'
-Plug 'kristijanhusak/defx-icons'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
 
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
-let g:python_host_prog = "/Users/cluas/.pyenv/versions/neovim2/bin/python"
+let g:python_host_prog = '/Users/cluas/.pyenv/versions/neovim2/bin/python'
 let g:python_highlight_all = 1
 let g:startify_change_to_dir = 1
 nmap <silent> <leader>d <Plug>(pydocstring)
 set completeopt+=noselect
+set nocursorline
 filetype indent on
-set nu
-
+set number
+set noshowcmd
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
 
-"
-set encoding=utf-8
-
 set clipboard=unnamedplus
 
 set undodir=$HOME/.vim/undo/
 set undofile
-set undolevels=1000
-set undoreload=10000
+set undolevels=500
+set undoreload=5000
 
-
+set scrolloff=1
 
 set background=dark
 colorscheme hybrid
 let g:hybrid_custom_term_colors = 1
-let g:airline_theme = "hybrid"
-if (has("nvim"))
+let g:airline_theme = 'hybrid'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+"hi Normal guibg=NONE ctermbg=NONE
+if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-if (has("termguicolors"))
+if (has('termguicolors')) && $TERM_PROGRAM ==# 'iTerm.app'
+  set t_8f=^[[38;2;%lu;%lu;%lum
+  set t_8b=^[[48;2;%lu;%lu;%lum
   set termguicolors
 endif
+
 
 set pumheight=5
 
 " For startify
 let s:header = [
-	      \ '',
-	      \ '+-------------------------------------------+',
-	      \ '|                   ^_^                     |',
-	      \ '|               Clean Code.                 |',
-	      \ '|                                           |',
-	      \ '|     GitHub: https://github.com/Cluas      |',
-	      \ '+-------------------------------------------+',
-	      \ ]
+              \ '',
+              \ '+-------------------------------------------+',
+              \ '|                   ^_^                     |',
+              \ '|               Clean Code.                 |',
+              \ '|                                           |',
+              \ '|     GitHub: https://github.com/Cluas      |',
+              \ '+-------------------------------------------+',
+              \ ]
 
 function! s:center(lines) abort
   let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
@@ -87,40 +95,13 @@ endfunction
 
 let g:startify_custom_header = s:center(s:header)
 
-" Defx setup ================================================================{{{
+map - :NERDTreeToggle<CR>
 
-call defx#custom#column('icon', {
-      \ 'directory_icon': '▸',
-      \ 'opened_icon': '▾',
-      \ 'root_icon': ' ',
-      \ })
-call defx#custom#column('filename', {
-      \ 'min_width': 40,
-      \ 'max_width': 40,
-      \ })
-call defx#custom#column('mark', {
-      \ 'readonly_icon': '✗',
-      \ 'selected_icon': '✓',
-      \ })
-call defx#custom#option('_', {
-      \ 'winwidth': 35,
-      \ 'columns': 'git:mark:indent:icons:filename:type',
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1,
-      \ 'ignored_files': '.*,*.pyc'
-      \ })
-
-" }}}
-
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 " coc.nvim setup ============================================================{{{
 
 " color for cursor holding highlight
 hi default CocHighlightText guibg=#8a8a8a guifg=#211F1C
-let g:airline#extensions#coc#enabled = 1
 
 " color for coc-diagnostic
 hi link CocErrorSign Error
@@ -129,18 +110,18 @@ hi link CocWarningSign ALEWarningSign
 " }}}
 "
 
-
 " Remove trailing whitespaces
 map <leader><space> :FixWhitespace<cr>
-let g:extra_whitespace_ignored_filetypes = ['defx']
 
 " Show git diff
 let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 nnoremap <leader>gs :GitGutterToggle<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
 " }}}
 
+set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 
 " FZF ======================================================================={{{
 autocmd! FileType fzf
@@ -161,97 +142,40 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 nnoremap <silent> <C-p> :FZF<CR>
-nnoremap <leader>rg :Rg<space>
 nnoremap <leader>bt :BTags<CR>
 nnoremap <leader>bl :BLines<CR>
 nnoremap <leader>bf :Buffers<CR>
 "}}}
 
 
-" Defx ======================================================================{{{
-map <silent> - :Defx<CR>
-" Avoid the white space highting issue
-autocmd FileType defx match ExtraWhitespace /^^/
-" Keymap in defx
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  "IndentLinesDisable
-  setl nospell
-  setl signcolumn=no
-  setl nonumber
-  nnoremap <silent><buffer><expr> <CR>
-  \ defx#is_directory() ?
-  \ defx#do_action('open_or_close_tree') :
-  \ defx#do_action('drop',)
-  nmap <silent><buffer><expr> <2-LeftMouse>
-  \ defx#is_directory() ?
-  \ defx#do_action('open_or_close_tree') :
-  \ defx#do_action('drop',)
-  nnoremap <silent><buffer><expr> s defx#do_action('drop', 'split')
-  nnoremap <silent><buffer><expr> v defx#do_action('drop', 'vsplit')
-  nnoremap <silent><buffer><expr> t defx#do_action('drop', 'tabe')
-  nnoremap <silent><buffer><expr> o defx#do_action('open_tree')
-  nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
-  nnoremap <silent><buffer><expr> C defx#do_action('copy')
-  nnoremap <silent><buffer><expr> P defx#do_action('paste')
-  nnoremap <silent><buffer><expr> M defx#do_action('rename')
-  nnoremap <silent><buffer><expr> D defx#do_action('remove_trash')
-  nnoremap <silent><buffer><expr> A defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select')
-  nnoremap <silent><buffer><expr> R defx#do_action('redraw')
-endfunction
-
-" Defx git
-let g:defx_git#indicators = {
-  \ 'Modified'  : '•',
-  \ 'Staged'    : '✚',
-  \ 'Untracked' : '✭',
-  \ 'Renamed'   : '➜',
-  \ 'Unmerged'  : '═',
-  \ 'Ignored'   : '☒',
-  \ 'Deleted'   : '✖',
-  \ 'Unknown'   : '?'
-  \ }
-let g:defx_git#column_length = 0
-hi def link Defx_filename_directory NERDTreeDirSlash
-hi def link Defx_git_Modified Special
-hi def link Defx_git_Staged Function
-hi def link Defx_git_Renamed Title
-hi def link Defx_git_Unmerged Label
-hi def link Defx_git_Untracked Tag
-hi def link Defx_git_Ignored Comment
-
-" Defx icons
-" Requires nerd-font, install at https://github.com/ryanoasis/nerd-fonts or
-" brew cask install font-hack-nerd-font
-" Then set non-ascii font to Driod sans mono for powerline in iTerm2
-" disbale syntax highlighting to prevent performence issue
-let g:defx_icons_enable_syntax_highlight = 1
-
-" }}}
 
 " Golang ===================================================================={{{
 " enrich highlighting
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = 'goimports'
+let g:go_metalinter_command = 'golangci-lint'
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_auto_sameids = 0
 " }}}
 
 
 " Linters ==================================================================={{{
-let g:ale_fixers = {'python': ['black', 'isort']}
-let g:ale_python_black_options="-t py27 -l 120 --fast"
-let g:ale_python_isort_options="-e -m 4 -w 120"
-
-
-
-" virtual text, conflicts with coc-git
-"let g:ale_virtualtext_cursor = 1
-"let g:ale_virtualtext_prefix = ' > '
+" fixters
+let g:ale_linters = {
+   \'python': [],
+   \}
+let g:ale_fixers = {
+   \'python': ['black', 'isort'],
+   \'sql': ['sqlformat'],
+   \'*': ['remove_trailing_lines', 'trim_whitespace'],
+   \'txt':['align_help_tags'],
+   \'go': ['goimports'],
+   \'json': ['fixjson'],
+   \}
+let g:ale_python_black_options='-t py27 -l 120 --fast'
+let g:ale_python_isort_options='-e --multi-line=3 -tc --line-width=120'
+let g:ale_sql_sqlformat_options="-k upper -a -s""
 nmap <leader>f :ALEFix<CR>
-"hi link ALEError ALEErrorSign
-"hi link ALEWarning ALEWarningSign
-
 " }}}
 
 " coc.nvim =================================================================={{{
@@ -265,8 +189,6 @@ nmap <leader>f :ALEFix<CR>
 " coc-html
 " coc-css
 " coc-vimlsp
-" coc-tsserver
-" coc-tslint-plugin
 " coc-pairs
 " coc-git
 " Smaller updatetime for CursorHold & CursorHoldI
@@ -300,12 +222,25 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" popup
+nmap <Leader>t <Plug>(coc-translator-p)
+" echo
+nmap <Leader>e <Plug>(coc-translator-e)
+" replace
+nmap <Leader>r <Plug>(coc-translator-r)
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
@@ -333,15 +268,54 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+nnoremap <silent> <space>g :<C-u>CocList --normal gstatus<CR>
+
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>ff :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+
 " }}}
 
 " Ultimate Snippet =========================================================={{{
 " Snippets are separated from the engine. Add this if you want them:
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger='<c-j>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit='vertical'
 " }}}
+
+" FZF ======================================================================={{{
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" Ag grep
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+" Rg grep
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <leader>rg :Rg<space>
+nnoremap <leader>bt :BTags<CR>
+nnoremap <leader>bl :BLines<CR>
+nnoremap <leader>bf :Buffers<CR>
+"}}}

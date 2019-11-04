@@ -62,7 +62,6 @@ let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-"hi Normal guibg=NONE ctermbg=NONE
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
@@ -109,10 +108,6 @@ hi link CocWarningSign ALEWarningSign
 
 " }}}
 "
-
-" Remove trailing whitespaces
-map <leader><space> :FixWhitespace<cr>
-
 " Show git diff
 let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
@@ -147,8 +142,6 @@ nnoremap <leader>bl :BLines<CR>
 nnoremap <leader>bf :Buffers<CR>
 "}}}
 
-
-
 " Golang ===================================================================={{{
 " enrich highlighting
 let g:go_def_mapping_enabled = 0
@@ -157,8 +150,6 @@ let g:go_metalinter_command = 'golangci-lint'
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:go_auto_sameids = 0
 " }}}
-
-
 " Linters ==================================================================={{{
 " fixters
 let g:ale_linters = {
@@ -186,10 +177,6 @@ nmap <leader>f :ALEFix<CR>
 " coc-yaml
 " coc-python
 " coc-json
-" coc-html
-" coc-css
-" coc-vimlsp
-" coc-pairs
 " coc-git
 " Smaller updatetime for CursorHold & CursorHoldI
 "f hidden is not set, TextEdit might fail.

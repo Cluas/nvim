@@ -29,6 +29,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'chemzqm/wxapp.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 call plug#end()
 
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
@@ -39,6 +42,12 @@ nmap <silent> <leader>d <Plug>(pydocstring)
 set completeopt+=noselect
 set nocursorline
 filetype indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 set number
 set noshowcmd
 map <Left> <Nop>
@@ -56,27 +65,26 @@ set undoreload=5000
 set scrolloff=1
 
 set background=dark
-colorscheme hybrid
-let g:hybrid_custom_term_colors = 1
-let g:airline_theme = 'hybrid'
+"colorscheme dracula
+"let g:hybrid_custom_term_colors = 1
+"let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-if (has('termguicolors')) && $TERM_PROGRAM ==# 'iTerm.app'
-  set t_8f=^[[38;2;%lu;%lu;%lum
-  set t_8b=^[[48;2;%lu;%lu;%lum
-  set termguicolors
-endif
+"if (has('termguicolors')) && $TERM_PROGRAM ==# 'iTerm.app'
+  "set t_8f=^[[38;2;%lu;%lu;%lum
+  "set t_8b=^[[48;2;%lu;%lu;%lum
+  "set termguicolors
+"endif
 
 
 set pumheight=5
 
 " For startify
 let s:header = [
-              \ '',
               \ '+-------------------------------------------+',
               \ '|                   ^_^                     |',
               \ '|               Clean Code.                 |',
@@ -100,7 +108,7 @@ let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 " coc.nvim setup ============================================================{{{
 
 " color for cursor holding highlight
-hi default CocHighlightText guibg=#8a8a8a guifg=#211F1C
+"hi default CocHighlightText guibg=#8a8a8a guifg=#211F1C
 
 " color for coc-diagnostic
 hi link CocErrorSign Error
@@ -149,6 +157,11 @@ let g:go_fmt_command = 'goimports'
 let g:go_metalinter_command = 'golangci-lint'
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:go_auto_sameids = 0
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
 " }}}
 " Linters ==================================================================={{{
 " fixters
@@ -161,7 +174,7 @@ let g:ale_fixers = {
    \'*': ['remove_trailing_lines', 'trim_whitespace'],
    \'txt':['align_help_tags'],
    \'go': ['goimports'],
-   \'json': ['fixjson'],
+   \'json': ['prettier'],
    \}
 let g:ale_python_black_options='-t py27 -l 120 --fast'
 let g:ale_python_isort_options='-e --multi-line=3 -tc --line-width=120'

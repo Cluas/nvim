@@ -17,7 +17,6 @@ call plug#end()
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
 let g:python_host_prog = '/Users/cluas/.pyenv/versions/neovim2/bin/python'
 let g:python_highlight_all = 1
-let g:startify_change_to_dir = 1
 
 filetype indent on
 set tabstop=4
@@ -161,8 +160,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap tt :CocCommand explorer<CR>
+nmap <leader> rn <Plug>(coc-rename)
+nmap - :CocCommand explorer<CR>
 " coc-translator
 nmap ts <Plug>(coc-translator-p)
 " Remap for do codeAction of selected region

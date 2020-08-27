@@ -12,6 +12,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 call plug#end()
 
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
@@ -31,11 +32,16 @@ map <Up> <Nop>
 map <Down> <Nop>
 
 
-
 set hidden
 set updatetime=100
 set shortmess+=c
 
+set undodir=$HOME/.vim/undo/
+set undofile
+set undolevels=500
+set undoreload=5000
+
+colorscheme hybrid
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'

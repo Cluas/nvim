@@ -63,13 +63,9 @@
   ],
   "coc.preferences.formatOnSaveFiletypes": ["json", "python"],
   "explorer.width": 38,
-  "explorer.quitOnOpen": true,
+  "explorer.quitOnOpen": false,
   "explorer.previewAction.onHover": false,
   "explorer.sources": [
-    {
-      "name": "buffer",
-      "expand": false
-    },
     {
       "name": "file",
       "expand": true
@@ -156,6 +152,8 @@
     "markdown": ["write-good", "markdownlint"],
     "sh": "shellcheck"
   },
+  "python.autoComplete.addBrackets": true,
+  "python.jediEnabled": false,
   "languageserver": {
     "golang": {
       "command": "gopls",

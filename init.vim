@@ -13,13 +13,20 @@ Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
-let g:python_host_prog = '/Users/cluas/.pyenv/versions/neovim2/bin/python'
-let g:python_highlight_all = 1
 
-filetype indent on
+" ===
+" === Editor behavior
+" ===
+set number
+set hidden
+set updatetime=100
+set shortmess+=c
+set autoindent
+
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
@@ -27,26 +34,38 @@ set number
 set noshowcmd
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-
-
-set hidden
-set updatetime=100
-set shortmess+=c
+set notimeout
 
 set undodir=$HOME/.vim/undo/
 set undofile
 set undolevels=500
 set undoreload=5000
+" ===
+" === Terminal Behaviors
+" ===
+let g:neoterm_autoscroll = 1
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
 
-colorscheme hybrid
+color hybrid
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
+set termguicolors " enable true colors support
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 
@@ -139,6 +158,7 @@ let g:coc_global_extensions = [
 	\ 'coc-snippets',
 	\ 'coc-syntax',
 	\ 'coc-translator',
+	\ 'coc-pairs',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
 

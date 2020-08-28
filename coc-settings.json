@@ -55,8 +55,6 @@
   "diagnostic.virtualText": true,
   "codeLens.enable": true,
   "list.previewHighlightGroup": "Statement",
-  "list.nextKeymap": "<C-e>",
-  "list.previousKeymap": "<C-u>",
   "snippets.ultisnips.directories": [
     "$HOME/.config/nvim/Ultisnips/",
     "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
@@ -147,6 +145,7 @@
   },
   "coc-actions.hideCursor": false,
   "coc-actions.showActionKind": true,
+  "list.source.grep.defaultOptions": ["--interactive", "--auto-preview"],
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
     "markdown": ["write-good", "markdownlint"],

@@ -11,6 +11,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
+Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
@@ -66,7 +67,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "set termguicolors " enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 
 set pumheight=5
@@ -111,6 +112,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_variable_assignments = 0
 let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
+let g:go_fmt_command='goimports'
 " }}}
 
 
@@ -149,7 +151,6 @@ let g:coc_global_extensions = [
 	\ 'coc-snippets',
 	\ 'coc-syntax',
 	\ 'coc-translator',
-	\ 'coc-pairs',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
 

@@ -1,4 +1,3 @@
-scriptencoding 'utf8'
 syntax on
 call plug#begin()
 
@@ -67,6 +66,7 @@ colorscheme PaperColor
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "set termguicolors " enable true colors support
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -141,40 +141,40 @@ nmap <leader>f :ALEFix<CR>
 " Smaller updatetime for CursorHold & CursorHoldI
 
 let g:coc_global_extensions = [
-	\ 'coc-actions',
-	\ 'coc-diagnostic',
-	\ 'coc-explorer',
-	\ 'coc-git',
-	\ 'coc-gitignore',
-	\ 'coc-json',
-	\ 'coc-lists',
-	\ 'coc-prettier',
-	\ 'coc-python',
-	\ 'coc-snippets',
-	\ 'coc-syntax',
-	\ 'coc-translator',
-	\ 'coc-vimlsp',
-	\ 'coc-yaml']
+    \ 'coc-actions',
+    \ 'coc-diagnostic',
+    \ 'coc-explorer',
+    \ 'coc-git',
+    \ 'coc-gitignore',
+    \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-prettier',
+    \ 'coc-python',
+    \ 'coc-snippets',
+    \ 'coc-syntax',
+    \ 'coc-translator',
+    \ 'coc-vimlsp',
+    \ 'coc-yaml']
 
 inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <c-o> coc#refresh()
 function! Show_documentation()
-	call CocActionAsync('highlight')
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+    call CocActionAsync('highlight')
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 nnoremap <leader>h :call Show_documentation()<CR>
 
@@ -193,7 +193,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)

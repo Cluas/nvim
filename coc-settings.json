@@ -60,7 +60,7 @@
     "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
   ],
   "coc.preferences.formatOnSaveFiletypes": ["json", "python"],
-  "explorer.width": 38,
+  "explorer.width": 32,
   "explorer.quitOnOpen": false,
   "explorer.previewAction.onHover": false,
   "explorer.sources": [
@@ -70,7 +70,7 @@
     }
   ],
   "explorer.file.column.indent.indentLine": true,
-  "explorer.file.showHiddenFiles": true,
+  "explorer.file.showHiddenFiles": false,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.column.git.showIgnored": true,
   "explorer.keyMappingMode": "none",

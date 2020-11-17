@@ -5,11 +5,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'powerline/powerline'
 Plug 'mhinz/vim-startify'
-Plug 'w0ng/vim-hybrid'
 Plug 'scrooloose/nerdcommenter'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
-Plug 'w0ng/vim-hybrid'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -37,6 +35,7 @@ set noshowcmd
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set notimeout
+set clipboard=unnamed
 
 set undodir=$HOME/.vim/undo/
 set undofile

@@ -14,6 +14,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'bufbuild/vim-buf'
 call plug#end()
 
 let g:python3_host_prog = '/Users/cluas/.pyenv/versions/neovim3/bin/python'
@@ -122,6 +123,7 @@ let g:go_fmt_command='goimports'
 " fixters
 let g:ale_linters = {
    \'python': [],
+\   'proto': ['buf-check-lint'],
    \}
 let g:ale_fixers = {
    \'python': ['black', 'isort'],

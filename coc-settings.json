@@ -42,14 +42,12 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "diagnostic.signOffset": 1,
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": false,
-  "diagnostic.refreshAfterSave": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
@@ -72,10 +70,10 @@
   "explorer.file.column.indent.indentLine": true,
   "explorer.file.showHiddenFiles": false,
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.column.git.showIgnored": true,
+  "explorer.file.git.showUntrackedFiles": true,
   "explorer.keyMappingMode": "none",
   "explorer.buffer.showHiddenBuffers": false,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "i": false,
 
     "gk": "expandablePrev",

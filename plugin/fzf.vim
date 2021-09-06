@@ -1,7 +1,6 @@
 nmap <C-p> :Files<CR>
 nmap <silent> <leader>b :Buffers<CR>
 nmap <silent> <leader>B :Buffers<C-R><C-W><CR>
-nmap <silent> <leader>a :Ag<CR>
 let g:fzf_action = { 'ctrl-e': 'edit'  }
 
 command! -bang -nargs=* Agc

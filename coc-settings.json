@@ -1,5 +1,4 @@
 {
-  "coc.preferences.hoverTarget": "preview",
   "coc.preferences.enableFloatHighlight": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.extensionUpdateCheck": "daily",
@@ -163,5 +162,33 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": []
     }
-  }
+  },
+  "vetur.trace.server": "verbose",
+  "cSpell.ignorePaths": [
+    "**/package-lock.json",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/objects/**",
+    "**/pkg/mod/**",
+    ".vscode"
+  ],
+  "cSpell.userWords": [
+    "Debugf",
+    "Dialector",
+    "Nacked",
+    "Nacks",
+    "Stmts",
+    "Warnf",
+    "amqp",
+    "gjson",
+    "gojektech",
+    "gorm",
+    "grpc",
+    "protobuf",
+    "pspl",
+    "rabbitmq",
+    "sjson",
+    "streadway",
+    "tidwall"
+  ]
 }

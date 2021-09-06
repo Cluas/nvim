@@ -8,10 +8,10 @@ let g:coc_global_extensions = [
     \ 'coc-lists',
     \ 'coc-prettier',
     \ 'coc-python',
-    \ 'coc-snippets',
-    \ 'coc-syntax',
-    \ 'coc-translator',
-    \ 'coc-vimlsp',
+    \ 'coc-snippets', 
+	\ 'coc-syntax',
+	\ 'coc-translator', 
+	\ 'coc-vimlsp',
     \ 'coc-yaml']
 
 inoremap <silent><expr> <TAB>
@@ -81,3 +81,6 @@ nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep
 " popup
 nmap <Leader>t <Plug>(coc-translator-p)
 vmap <Leader>t <Plug>(coc-translator-pv)
+
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)

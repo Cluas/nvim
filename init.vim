@@ -31,6 +31,7 @@ Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'bufbuild/vim-buf'
+Plug 'github/copilot.vim'
 
 Plug 'mbbill/undotree'
 

@@ -17,3 +17,9 @@ let g:go_highlight_variable_assignments = 0
 let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
 let g:go_fmt_command='goimports'
+
+
+autocmd FileType go let b:go_fmt_options = {
+\ 'goimports': '-local ' .
+  \ trim(system('{cd '. shellescape(expand('%:h')) .' && go list -m;}')),
+\ }

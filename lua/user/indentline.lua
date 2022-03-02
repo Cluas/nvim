@@ -12,6 +12,7 @@ vim.g.indent_blankline_filetype_exclude = {
 	"neogitstatus",
 	"NvimTree",
 	"Trouble",
+	"markdown",
 }
 vim.g.indentLine_enabled = 1
 -- vim.g.indent_blankline_char = "│"

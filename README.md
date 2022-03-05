@@ -1,4 +1,2 @@
-# vim-config
-Cluas's vim config
-
-个人vim调教
+# nvim
+Cluas's neovim config

@@ -14,8 +14,15 @@ null_ls.setup({
 		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-    formatting.goimports,
-    diagnostics.protoc_gen_lint,
-    diagnostics.golangci_lint,
+		formatting.goimports,
+		diagnostics.protoc_gen_lint,
+		diagnostics.golangci_lint,
 	},
+	on_attach = function(_)
+		vim.cmd([[
+            augroup GoAutoFormatting
+                autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+	end,
 })

@@ -1,4 +1,4 @@
-local status_ok, _ = pcall(require, "dap")
+local status_ok, dap = pcall(require, "dap")
 if not status_ok then
 	return
 end
@@ -27,7 +27,6 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
 
-local dap = require("dap")
 dap.adapters.go = function(callback, _)
 	local stdout = vim.loop.new_pipe(false)
 	local handle
@@ -61,6 +60,20 @@ dap.adapters.go = function(callback, _)
 end
 
 -- auto start and close ui
+local ok, dapui = pcall(require, "dapui")
+if not ok then
+	return
+end
+
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
 require("dap").listeners.before["event_initialized"]["custom"] = function(_, _)
 	require("dapui").open()
 end
@@ -69,11 +82,11 @@ require("dap").listeners.before["event_terminated"]["custom"] = function(_, _)
 end
 
 
-require("dapui").setup({
+dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
 	mappings = {
 		-- Use a table to apply multiple mappings
-		expand = { "<CR>", "<2-LeftMouse>" },
+		expand = { "<CR>", "<2-LeftMouse>", "h","l" },
 		open = "o",
 		remove = "d",
 		edit = "e",

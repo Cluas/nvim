@@ -60,7 +60,6 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim")
 	use("SmiteshP/nvim-gps")
 	use({
-
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
 		ft = "markdown",

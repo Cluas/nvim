@@ -18,11 +18,4 @@ null_ls.setup({
 		diagnostics.protoc_gen_lint,
 		diagnostics.golangci_lint,
 	},
-	on_attach = function(_)
-		vim.cmd([[
-            augroup GoAutoFormatting
-                autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
-            augroup END
-            ]])
-	end,
 })

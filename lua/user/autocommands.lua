@@ -35,6 +35,7 @@ vim.cmd([[
   \ 'goimports': '-local ' .
     \ trim(system('{cd '. shellescape(expand('%:h')) .' && go list -m;}')),
   \ }
+    autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
   augroup end
 ]])
 

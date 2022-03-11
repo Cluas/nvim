@@ -180,10 +180,18 @@ local mappings = {
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
-  d = {
-    name = "Debugger",
-    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-  }
+	d = {
+		name = "Debugger",
+		b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+		c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+		t = { "<cmd>lua require'dap'.close()<cr>", "Stop" },
+		s = {
+			name = "Setp",
+			c = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+			i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+			o = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+		},
+	},
 }
 
 which_key.setup(setup)

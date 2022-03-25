@@ -5,3 +5,4 @@ vim.g.copilot_tab_fallback = ""
 vim.cmd([[
   imap <silent><script><expr> <C-h> copilot#Accept("\<CR>")
 ]])
+

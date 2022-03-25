@@ -13,9 +13,8 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 -- load custom snippets if they exist
 if vim.fn.empty(vim.fn.glob("~/.config/snippets")) == 0 then
-require("luasnip/loaders/from_vscode").lazy_load({ paths = { "~/.config/snippets"}})
+	require("luasnip/loaders/from_vscode").lazy_load({ paths = { "~/.config/snippets" } })
 end
-
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -142,5 +141,11 @@ cmp.setup({
 	experimental = {
 		ghost_text = false,
 		native_menu = false,
+	},
+})
+
+cmp.setup.filetype("release-note", {
+	sources = {
+		{ name = "luasnip" },
 	},
 })

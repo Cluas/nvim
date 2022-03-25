@@ -15,7 +15,8 @@ null_ls.setup({
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
-		diagnostics.protoc_gen_lint,
+		formatting.buf,
 		diagnostics.golangci_lint,
+		diagnostics.buf,
 	},
 })

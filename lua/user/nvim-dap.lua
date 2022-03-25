@@ -3,7 +3,8 @@ if not status_ok then
 	return
 end
 
-require('dap.ext.vscode').load_launchjs()
+require("dap-go").setup()
+require("dap.ext.vscode").load_launchjs()
 
 vim.highlight.create("DapBreakpoint", { ctermbg = 0, guifg = "#993939", guibg = "#31353f" }, false)
 vim.highlight.create("DapLogPoint", { ctermbg = 0, guifg = "#61afef", guibg = "#31353f" }, false)
@@ -65,28 +66,64 @@ if not ok then
 	return
 end
 
+local keymap = vim.api.nvim_set_keymap
+local function keybind()
+	keymap("n", "c", '<cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
+	keymap("n", "n", '<cmd>lua require"dap".step_over()<CR>', { noremap = true, silent = true })
+	keymap("n", "s", '<cmd>lua require"dap".step_into()<CR>', { noremap = true, silent = true })
+	keymap("n", "o", '<cmd>lua require"dap".step_out()<CR>', { noremap = true, silent = true })
+	keymap("n", "u", '<cmd>lua require"dap".up()<CR>', { noremap = true, silent = true })
+	keymap("n", "D", '<cmd>lua require"dap".down()<CR>', { noremap = true, silent = true })
+	keymap("n", "C", '<cmd>lua require"dap".run_to_cursor()<CR>', { noremap = true, silent = true })
+	keymap("n", "b", '<cmd>lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
+	keymap("n", "P", '<cmd>lua require"dap".pause()<CR>', { noremap = true, silent = true })
+end
+
+local unbind = function()
+	local keys = {
+		"c",
+		"n",
+		"s",
+		"o",
+		"u",
+		"D",
+		"C",
+		"b",
+		"P",
+	}
+	for _, value in pairs(keys) do
+		local cmd = "silent! unmap " .. value
+		vim.cmd(cmd)
+	end
+	vim.cmd([[silent! vunmap p]])
+end
+
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+	keybind()
+	dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+	unbind()
+	dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+	unbind()
+	dapui.close()
 end
 require("dap").listeners.before["event_initialized"]["custom"] = function(_, _)
+	keybind()
 	require("dapui").open()
 end
 require("dap").listeners.before["event_terminated"]["custom"] = function(_, _)
+	unbind()
 	require("dapui").close()
 end
-
 
 dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
 	mappings = {
 		-- Use a table to apply multiple mappings
-		expand = { "<CR>", "<2-LeftMouse>", "h","l" },
+		expand = { "<CR>", "<2-LeftMouse>", "h", "l" },
 		open = "o",
 		remove = "d",
 		edit = "e",
@@ -122,4 +159,3 @@ dapui.setup({
 	},
 	windows = { indent = 1 },
 })
-

@@ -3,6 +3,8 @@ if not status_ok then
 	return
 end
 
+local M = {}
+
 require("dap-go").setup()
 require("dap.ext.vscode").load_launchjs()
 
@@ -159,3 +161,40 @@ dapui.setup({
 	},
 	windows = { indent = 1 },
 })
+
+local default_launch_json = [[
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch main",
+      "type": "go",
+      "request": "launch",
+      "mode": "exec",
+      "remotePath": "",
+      "program": "${workspaceFolder}/main.go",
+      "env": {},
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "buildFlags": ""
+    }
+  ]
+}
+
+]]
+
+function M.debug_config()
+	local resolved_path = vim.fn.getcwd() .. "/.vscode/launch.json"
+	if vim.loop.fs_stat(resolved_path) then
+		return vim.cmd("e " .. resolved_path)
+	end
+  vim.fn.mkdir(vim.fn.getcwd() .. "/.vscode/")
+  local contents = vim.fn.split(default_launch_json, "\n")
+  vim.fn.writefile(contents, resolved_path)
+	vim.cmd("e " .. resolved_path)
+end
+
+vim.cmd([[ command! DebugConfig execute 'lua require("user.nvim-dap").debug_config()']])
+
+return M

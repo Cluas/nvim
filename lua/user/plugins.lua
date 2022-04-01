@@ -64,6 +64,7 @@ return packer.startup(function(use)
 		run = "cd app && npm install",
 		ft = "markdown",
 	})
+  use("jamestthompson3/nvim-remote-containers") -- remote develop
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -87,7 +88,7 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-	use("Cluas/null-ls.nvim") -- for formatters and linters
+	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("ray-x/lsp_signature.nvim")
 	use("github/copilot.vim") -- ai completions
 	use({

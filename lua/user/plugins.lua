@@ -65,7 +65,7 @@ return packer.startup(function(use)
 		ft = "markdown",
 	})
   use("jamestthompson3/nvim-remote-containers") -- remote develop
-  use("Cluas/translate.nvim") -- translate
+  use("uga-rosa/translate.nvim") -- translate
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

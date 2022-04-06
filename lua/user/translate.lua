@@ -24,7 +24,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap(
 	"n",
 	"tr",
-	":Translate ZH -source=EN  -output=floating<cr>",
+	"viw:Translate ZH -source=EN  -output=floating<cr>",
 	{ noremap = true, silent = true }
 )
 keymap(

@@ -77,6 +77,7 @@ nvim_tree.setup({
 	filters = {
 		dotfiles = false,
 		custom = {},
+		exclude = { ".vscode" },
 	},
 	git = {
 		enable = true,

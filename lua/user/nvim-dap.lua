@@ -36,17 +36,17 @@ if not ok then
 	return
 end
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap
 local function keybind()
-	keymap("n", "c", '<cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
-	keymap("n", "n", '<cmd>lua require"dap".step_over()<CR>', { noremap = true, silent = true })
-	keymap("n", "s", '<cmd>lua require"dap".step_into()<CR>', { noremap = true, silent = true })
-	keymap("n", "o", '<cmd>lua require"dap".step_out()<CR>', { noremap = true, silent = true })
-	keymap("n", "u", '<cmd>lua require"dap".up()<CR>', { noremap = true, silent = true })
-	keymap("n", "D", '<cmd>lua require"dap".down()<CR>', { noremap = true, silent = true })
-	keymap("n", "C", '<cmd>lua require"dap".run_to_cursor()<CR>', { noremap = true, silent = true })
-	keymap("n", "b", '<cmd>lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
-	keymap("n", "P", '<cmd>lua require"dap".pause()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "c", '<cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "n", '<cmd>lua require"dap".step_over()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "s", '<cmd>lua require"dap".step_into()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "o", '<cmd>lua require"dap".step_out()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "u", '<cmd>lua require"dap".up()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "D", '<cmd>lua require"dap".down()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "C", '<cmd>lua require"dap".run_to_cursor()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "b", '<cmd>lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
+	keymap.set("n", "P", '<cmd>lua require"dap".pause()<CR>', { noremap = true, silent = true })
 end
 
 local unbind = function()

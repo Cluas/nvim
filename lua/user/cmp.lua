@@ -31,7 +31,7 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	mapping = {
+	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -73,7 +73,7 @@ cmp.setup({
 			"i",
 			"s",
 		}),
-	},
+	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -89,19 +89,20 @@ cmp.setup({
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 			-- NOTE: order matters
 			vim_item.menu = ({
-				-- nvim_lsp = "[LSP]",
-				-- nvim_lua = "[Nvim]",
-				-- luasnip = "[Snippet]",
-				-- buffer = "[Buffer]",
-				-- path = "[Path]",
-				-- emoji = "[Emoji]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[Nvim]",
+				luasnip = "[Snippet]",
+				buffer = "[Buffer]",
+				path = "[Path]",
+				emoji = "[Emoji]",
+				copilot = "[Copilot]",
 
-				nvim_lsp = "",
-				nvim_lua = "",
-				luasnip = "",
-				buffer = "",
-				path = "",
-				emoji = "",
+				-- nvim_lsp = "",
+				-- nvim_lua = "",
+				-- luasnip = "",
+				-- buffer = "",
+				-- path = "",
+				-- emoji = "",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -114,6 +115,7 @@ cmp.setup({
 		{ name = "cmp_tabnine" },
 		{ name = "path" },
 		{ name = "emoji" },
+		{ name = "copilot" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,

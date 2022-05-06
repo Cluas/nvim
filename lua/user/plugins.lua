@@ -64,8 +64,8 @@ return packer.startup(function(use)
 		run = "cd app && npm install",
 		ft = "markdown",
 	})
-  use("jamestthompson3/nvim-remote-containers") -- remote develop
-  use("uga-rosa/translate.nvim") -- translate
+	use("jamestthompson3/nvim-remote-containers") -- remote develop
+	use("uga-rosa/translate.nvim") -- translate
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -92,6 +92,7 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("ray-x/lsp_signature.nvim")
 	use("github/copilot.vim") -- ai completions
+	use("RRethy/vim-illuminate")
 	use({
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
@@ -121,9 +122,9 @@ return packer.startup(function(use)
 	use("Pocco81/DAPInstall.nvim")
 	use("leoluz/nvim-dap-go")
 
-  -- Lua
-  use("nanotee/luv-vimdocs")
-  use("milisims/nvim-luaref")
+	-- Lua
+	use("nanotee/luv-vimdocs")
+	use("milisims/nvim-luaref")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

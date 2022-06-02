@@ -1,5 +1,7 @@
 local M = {}
 
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+
 M.setup = function()
 	local icons = require("user.icons")
 	local signs = {
@@ -24,7 +26,7 @@ M.setup = function()
 		underline = true,
 		severity_sort = true,
 		float = {
-			focusable = false,
+			focusable = true,
 			style = "minimal",
 			border = "rounded",
 			source = "always",
@@ -71,18 +73,18 @@ M.on_attach = function(client, bufnr)
 	if client.name == "gopls" then
 		client.resolved_capabilities.document_formatting = false
 	end
+	local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	if not status_cmp_ok then
+		return
+	end
+
+	M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not ok then
-	return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 function M.enable_format_on_save()
 	vim.cmd([[

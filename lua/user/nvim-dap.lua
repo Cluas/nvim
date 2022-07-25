@@ -158,6 +158,12 @@ function M.debug_config()
 	vim.cmd("e " .. resolved_path)
 end
 
+function M.terminate()
+  dap.terminate()
+	unbind()
+	dapui.close()
+end
+
 vim.cmd([[ command! DebugConfig execute 'lua require("user.nvim-dap").debug_config()']])
 vim.cmd([[ command! Debug execute 'lua require("dap").continue()']])
 

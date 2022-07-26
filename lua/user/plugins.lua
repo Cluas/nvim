@@ -139,7 +139,7 @@ return packer.startup(function(use)
 
 	-- Tool Manager
 	use({
-    "williamboman/mason.nvim", 
+    "williamboman/mason.nvim",
     config = function ()
       require("mason").setup()
     end
@@ -149,7 +149,6 @@ return packer.startup(function(use)
 	use("mfussenegger/nvim-dap")
 	use("theHamsta/nvim-dap-virtual-text")
 	use("rcarriga/nvim-dap-ui")
-	use("Pocco81/DAPInstall.nvim")
 	use("leoluz/nvim-dap-go")
 
 	-- Lua

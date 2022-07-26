@@ -96,10 +96,10 @@ return packer.startup(function(use)
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 	})
-    use {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
-  }
+	use({
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+	})
 	-- use("github/copilot.vim") -- ai completions
 
 	use({
@@ -136,6 +136,14 @@ return packer.startup(function(use)
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 	use("f-person/git-blame.nvim")
+
+	-- Tool Manager
+	use({
+    "williamboman/mason.nvim", 
+    config = function ()
+      require("mason").setup()
+    end
+  })
 
 	-- DAP
 	use("mfussenegger/nvim-dap")

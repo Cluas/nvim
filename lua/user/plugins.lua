@@ -41,31 +41,53 @@ packer.init({
 -- Install your plugins here
 
 return packer.startup(function(use)
-	-- My plugins here
+	-- Plugin manager
 	use("wbthomason/packer.nvim") -- Have packer manage itself
+
+	-- Lua development
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+
+	-- Dashboard
+	use("goolord/alpha-nvim")
+
+	-- Editing support
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
-	use("kyazdani42/nvim-web-devicons")
+
+	-- File exporter
 	use("kyazdani42/nvim-tree.lua")
-	use("moll/vim-bbye")
+	use("kyazdani42/nvim-web-devicons")
+
+	-- StatusLine
 	use("nvim-lualine/lualine.nvim")
+
+	-- Bufferline
 	use("akinsho/bufferline.nvim")
-	use("akinsho/toggleterm.nvim")
+
+	-- Project
 	use("ahmedkhalf/project.nvim")
-	use("lewis6991/impatient.nvim")
+
+	-- Terminal
+	use("akinsho/toggleterm.nvim")
+
+	-- Indent
 	use("lukas-reineke/indent-blankline.nvim")
-	use("goolord/alpha-nvim")
-	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
-	use("folke/which-key.nvim")
-	use("SmiteshP/nvim-gps")
+
+	-- Utility
+	use("moll/vim-bbye")
+	use("lewis6991/impatient.nvim")
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
 		ft = "markdown",
 	})
 	use("jamestthompson3/nvim-remote-containers") -- remote develop
+
+	-- Keybindings
+	use("folke/which-key.nvim")
+
+	-- Tools
 	use("uga-rosa/translate.nvim") -- translate
 
 	-- Colorschemes
@@ -80,6 +102,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- lsp completions
 	use("hrsh7th/cmp-emoji") -- emoji completions
 	use("hrsh7th/cmp-nvim-lsp-signature-help") -- lsp signature completions
+	use("zbirenbaum/copilot-cmp")
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 
 	-- snippets
@@ -91,16 +114,8 @@ return packer.startup(function(use)
 	use("simrat39/symbols-outline.nvim")
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("RRethy/vim-illuminate")
-	use({
-		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
-	})
-	use({
-		"SmiteshP/nvim-navic",
-		requires = "neovim/nvim-lspconfig",
-	})
+	use("SmiteshP/nvim-navic")
 	-- use("github/copilot.vim") -- ai completions
-
 	use({
 		"zbirenbaum/copilot.lua",
 		event = { "VimEnter" },
@@ -109,10 +124,6 @@ return packer.startup(function(use)
 				require("user.copilot")
 			end, 100)
 		end,
-	})
-	use({
-		"zbirenbaum/copilot-cmp",
-		module = "copilot_cmp",
 	})
 
 	-- Rust
@@ -137,13 +148,8 @@ return packer.startup(function(use)
 	use("f-person/git-blame.nvim")
 
 	-- Tool Manager
-	use({
-    "williamboman/mason.nvim",
-    config = function ()
-      require("mason").setup()
-    end
-  })
-  use("williamboman/mason-lspconfig.nvim")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 
 	-- DAP
 	use("mfussenegger/nvim-dap")

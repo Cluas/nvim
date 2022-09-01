@@ -89,6 +89,14 @@ return packer.startup(function(use)
 
 	-- Tools
 	use("uga-rosa/translate.nvim") -- translate
+	use({
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+		end,
+	})
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -100,6 +108,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("hrsh7th/cmp-nvim-lsp") -- lsp completions
+	use("hrsh7th/cmp-nvim-lua") -- lua completions
 	use("hrsh7th/cmp-emoji") -- emoji completions
 	use("hrsh7th/cmp-nvim-lsp-signature-help") -- lsp signature completions
 	use("zbirenbaum/copilot-cmp")
@@ -142,6 +151,7 @@ return packer.startup(function(use)
 	})
 	use("nvim-treesitter/playground")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("m-demare/hlargs.nvim")
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")

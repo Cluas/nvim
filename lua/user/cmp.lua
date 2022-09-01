@@ -134,14 +134,14 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "copilot", group_index = 2 },
-		{ name = "nvim_lsp", group_index = 2 },
-		{ name = "nvim_lsp_signature_help", group_index = 2 },
-		{ name = "nvim_lua", group_index = 2 },
-		{ name = "luasnip", group_index = 2 },
-		{ name = "buffer", group_index = 2 },
-		{ name = "cmp_tabnine", group_index = 2 },
 		{ name = "path", group_index = 2 },
+		{ name = "copilot", group_index = 2 },
+		{ name = "nvim_lsp", group_index = 2, keyword_length = 3 },
+		{ name = "nvim_lsp_signature_help", group_index = 2 },
+		{ name = "nvim_lua", group_index = 2, keyword_length = 2 },
+		{ name = "luasnip", group_index = 2, keyword_length = 2 },
+		{ name = "buffer", group_index = 2, keyword_length = 2 },
+		{ name = "cmp_tabnine", group_index = 2, keyword_length = 2 },
 		{ name = "emoji", group_index = 2 },
 	},
 	confirm_opts = {
@@ -166,7 +166,7 @@ cmp.setup({
 		documentation = false,
 		completion = {
 			border = "rounded",
-      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+			winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
 		},
 	},
 	experimental = {

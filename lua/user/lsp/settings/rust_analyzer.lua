@@ -1,3 +1,6 @@
+local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 return {
 	tools = {
 		-- autoSetHints = false,
@@ -11,6 +14,9 @@ return {
 		end,
 
 		auto = false,
+		dap = {
+			adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+		},
 		inlay_hints = {
 			-- Only show inlay hints for the current line
 			only_current_line = false,
@@ -71,6 +77,9 @@ return {
 			["rust-analyzer"] = {
 				lens = {
 					enable = true,
+				},
+				cargo = {
+					autoReload = true,
 				},
 				checkOnSave = {
 					command = "clippy",

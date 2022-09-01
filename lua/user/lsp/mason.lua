@@ -16,6 +16,7 @@ local servers = {
 	"yamlls",
 	"bashls",
 	"rust_analyzer",
+	"codelldb",
 }
 
 local settings = {

@@ -125,15 +125,6 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 	use("SmiteshP/nvim-navic")
 	-- use("github/copilot.vim") -- ai completions
-	use({
-		"zbirenbaum/copilot.lua",
-		event = { "VimEnter" },
-		config = function()
-			vim.defer_fn(function()
-				require("user.copilot")
-			end, 100)
-		end,
-	})
 
 	-- Rust
 	use("simrat39/rust-tools.nvim")

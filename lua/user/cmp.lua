@@ -27,7 +27,6 @@ end
 local icons = require("user.icons")
 local kind_icons = icons.kind
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 
 vim.g.cmp_active = true
@@ -119,11 +118,6 @@ cmp.setup({
 				vim_item.kind = icons.misc.Robot
 			end
 
-			if entry.source.name == "copilot" then
-				vim_item.kind = icons.git.Octoface
-				vim_item.kind_hl_group = "CmpItemKindCopilot"
-			end
-
 			if entry.source.name == "emoji" then
 				vim_item.kind = icons.misc.Smiley
 				vim_item.kind_hl_group = "CmpItemKindEmoji"
@@ -135,7 +129,6 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "path", group_index = 2 },
-		{ name = "copilot", group_index = 2 },
 		{ name = "nvim_lsp", group_index = 2, keyword_length = 3 },
 		{ name = "nvim_lsp_signature_help", group_index = 2 },
 		{ name = "nvim_lua", group_index = 2, keyword_length = 2 },

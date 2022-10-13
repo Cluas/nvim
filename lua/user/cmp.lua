@@ -20,7 +20,7 @@ end
 
 -- Common function
 local check_backspace = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local line, col = string.unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
@@ -130,7 +130,7 @@ cmp.setup({
 	sources = {
 		{ name = "path", group_index = 2 },
 		{ name = "nvim_lsp", group_index = 2, keyword_length = 3 },
-		{ name = "nvim_lsp_signature_help", group_index = 2 },
+		--[[ { name = "nvim_lsp_signature_help", group_index = 2 }, ]]
 		{ name = "nvim_lua", group_index = 2, keyword_length = 2 },
 		{ name = "luasnip", group_index = 2, keyword_length = 2 },
 		{ name = "buffer", group_index = 2, keyword_length = 2 },

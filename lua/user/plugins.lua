@@ -82,21 +82,12 @@ return packer.startup(function(use)
 		run = "cd app && npm install",
 		ft = "markdown",
 	})
-	use("jamestthompson3/nvim-remote-containers") -- remote develop
 
 	-- Keybindings
 	use("folke/which-key.nvim")
 
 	-- Tools
 	use("uga-rosa/translate.nvim") -- translate
-	use({
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
-		config = function()
-			-- you can configure Hop the way you like here; see :h hop-config
-			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-		end,
-	})
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

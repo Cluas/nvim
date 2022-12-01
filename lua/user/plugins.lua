@@ -120,6 +120,10 @@ return packer.startup(function(use)
 	-- Rust
 	use("simrat39/rust-tools.nvim")
 
+	-- Go
+	use("ray-x/go.nvim")
+	use("ray-x/guihua.lua")
+
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")

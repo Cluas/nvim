@@ -18,23 +18,10 @@ local servers = {
 	"rust_analyzer",
 }
 
-local settings = {
-	ui = {
-		border = "rounded",
-		icons = {
-			package_installed = "◍",
-			package_pending = "◍",
-			package_uninstalled = "◍",
-		},
-	},
-	log_level = vim.log.levels.INFO,
-	max_concurrent_installers = 4,
-}
 
-mason.setup(settings)
+mason.setup()
 mason_lspconfig.setup({
 	ensure_installed = servers,
-	automatic_installation = true,
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -76,3 +63,12 @@ for _, server in pairs(servers) do
 	lspconfig[server].setup(opts)
 	::continue::
 end
+
+
+local fidget_ok, fidget = pcall(require, "fidget")
+if not fidget_ok then
+	return
+end
+
+fidget.setup()
+

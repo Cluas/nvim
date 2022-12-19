@@ -1,5 +1,5 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
+local ok, alpha = pcall(require, "alpha")
+if not ok then
 	return
 end
 
@@ -22,11 +22,6 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-	-- NOTE: requires the fortune-mod package to work
-	-- local handle = io.popen("fortune")
-	-- local fortune = handle:read("*a")
-	-- handle:close()
-	-- return fortune
 	return "Clean Code"
 end
 

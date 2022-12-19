@@ -124,6 +124,9 @@ return packer.startup(function(use)
 	use("ray-x/go.nvim")
 	use("ray-x/guihua.lua")
 
+	-- Java
+	use("mfussenegger/nvim-jdtls")
+
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
@@ -146,6 +149,9 @@ return packer.startup(function(use)
 	-- Tool Manager
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
+
+	-- Useful status updates for LSP
+	use("j-hui/fidget.nvim")
 
 	-- DAP
 	use("mfussenegger/nvim-dap")

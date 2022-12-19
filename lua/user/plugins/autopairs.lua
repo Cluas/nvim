@@ -1,6 +1,5 @@
--- Setup nvim-cmp.
-local status_ok, npairs = pcall(require, "nvim-autopairs")
-if not status_ok then
+local ok, npairs = pcall(require, "nvim-autopairs")
+if not ok then
 	return
 end
 

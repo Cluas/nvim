@@ -23,16 +23,6 @@ local setup = {
 			g = true, -- bindings for prefixed with g
 		},
 	},
-	-- add operators that will trigger motion and text object completion
-	-- to enable all native operators, set the preset / operators plugin above
-	-- operators = { gc = "Comments" },
-	key_labels = {
-		-- override the label used to display some keys. It doesn't effect WK in any other way.
-		-- For example:
-		-- ["<space>"] = "SPC",
-		-- ["<cr>"] = "RET",
-		-- ["<tab>"] = "TAB",
-	},
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 		separator = "➜", -- symbol used between a key and it's label
@@ -95,6 +85,7 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  ["<space>"] = {"<cmd>Telescope buffers<cr>", "[ ] Find existing buffers"},
 
 	p = {
 		name = "Packer",
@@ -163,12 +154,11 @@ local mappings = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
+		d = { "<cmd>Telescope diagnostics<cr>", "Diagnostic" },
+		f = { "<cmd>Telescope find_files<cr>", "Files" },
+		h = { "<cmd>Telescope help_tags<cr>", "Help" },
+		r = { "<cmd>telescope oldfiles<cr>", "Open Recent File" },
+		w = { "<cmd>Telescope grep_string<cr>", "Current word" },
 	},
 
 	t = {

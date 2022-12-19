@@ -1,5 +1,5 @@
-local status_ok, navic = pcall(require, "nvim-navic")
-if not status_ok then
+local ok, navic = pcall(require, "nvim-navic")
+if not ok then
   return
 end
 

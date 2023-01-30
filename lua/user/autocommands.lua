@@ -60,12 +60,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.go" },
-  callback = function()
-    vim.lsp.buf.format { async = true }
-  end,
-})
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()

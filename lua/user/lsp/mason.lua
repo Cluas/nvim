@@ -44,11 +44,6 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
 	end
 
-	if server == "gopls" then
-		local gopls_opts = require("user.lsp.settings.gopls")
-		opts = vim.tbl_deep_extend("force", gopls_opts, opts)
-	end
-
 	if server == "rust_analyzer" then
 		local rust_opts = require("user.lsp.settings.rust_analyzer")
 		local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")

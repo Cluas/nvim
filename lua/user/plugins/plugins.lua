@@ -102,7 +102,6 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lua") -- lua completions
 	use("hrsh7th/cmp-emoji") -- emoji completions
 	use("hrsh7th/cmp-nvim-lsp-signature-help") -- lsp signature completions
-	use("zbirenbaum/copilot-cmp")
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 
 	-- snippets

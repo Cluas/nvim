@@ -18,11 +18,6 @@ nvim_tree.setup({
 	hijack_directories = {
 		enable = false,
 	},
-	ignore_ft_on_setup = {
-		"startify",
-		"dashboard",
-		"alpha",
-	},
 	update_cwd = true,
 	renderer = {
 		add_trailing = false,
@@ -120,11 +115,23 @@ nvim_tree.setup({
 	},
 })
 
-local nvim_tree_events = require("nvim-tree.events")
-local bufferline_api = require("bufferline.api")
+local ok, nvim_tree_events = pcall(require, "nvim-tree.events")
+if not ok then
+	return
+end
+
+local ok, bufferline_api = pcall(require, "bufferline.api")
+if not ok then
+	return
+end
+
+local ok, view = pcall(require, "nvim-tree.view")
+if not ok then
+	return
+end
 
 local function get_tree_size()
-	return require("nvim-tree.view").View.width
+	return view.View.width
 end
 
 nvim_tree_events.subscribe("TreeOpen", function()

@@ -85,7 +85,7 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  ["<space>"] = {"<cmd>Telescope buffers<cr>", "[ ] Find existing buffers"},
+	["<space>"] = { "<cmd>Telescope buffers<cr>", "[ ] Find existing buffers" },
 
 	p = {
 		name = "Packer",
@@ -122,7 +122,7 @@ local mappings = {
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
+		d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
 			"Workspace Diagnostics",
@@ -143,7 +143,7 @@ local mappings = {
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+		R = { "<cmd>Telescope lsp_references<cr>", "References" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 		S = {
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -163,8 +163,6 @@ local mappings = {
 
 	t = {
 		name = "Terminal",
-		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
 		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },

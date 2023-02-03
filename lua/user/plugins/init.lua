@@ -16,4 +16,3 @@ require("user.plugins.indentline")
 require("user.plugins.navic")
 require("user.plugins.whichkey")
 require("user.plugins.translate")
---[[ require("user.plugins.go") ]]

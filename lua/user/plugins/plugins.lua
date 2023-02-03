@@ -63,7 +63,7 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 
 	-- Bufferline
-	use("akinsho/bufferline.nvim")
+	use("romgrk/barbar.nvim")
 
 	-- Project
 	use("ahmedkhalf/project.nvim")
@@ -119,13 +119,6 @@ return packer.startup(function(use)
 
 	-- Rust
 	use("simrat39/rust-tools.nvim")
-
-	-- Go
-	use("ray-x/go.nvim")
-	use("ray-x/guihua.lua")
-
-	-- Java
-	use("mfussenegger/nvim-jdtls")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

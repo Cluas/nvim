@@ -15,9 +15,9 @@ local servers = {
 	"tsserver",
 	"yamlls",
 	"bashls",
+	"taplo",
 	"rust_analyzer",
 }
-
 
 mason.setup()
 mason_lspconfig.setup({
@@ -59,11 +59,9 @@ for _, server in pairs(servers) do
 	::continue::
 end
 
-
 local fidget_ok, fidget = pcall(require, "fidget")
 if not fidget_ok then
 	return
 end
 
 fidget.setup()
-

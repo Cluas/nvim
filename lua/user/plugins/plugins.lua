@@ -48,6 +48,8 @@ return packer.startup(function(use)
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
+	use("folke/neodev.nvim")
+
 	-- Dashboard
 	use("goolord/alpha-nvim")
 
@@ -114,7 +116,6 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("RRethy/vim-illuminate")
 	use("SmiteshP/nvim-navic")
-	-- use("github/copilot.vim") -- ai completions
 
 	-- Rust
 	use("simrat39/rust-tools.nvim")
@@ -154,6 +155,16 @@ return packer.startup(function(use)
 	-- Lua
 	use("nanotee/luv-vimdocs")
 	use("milisims/nvim-luaref")
+
+	use({
+		"zbirenbaum/copilot.lua",
+		event = { "VimEnter" },
+		config = function()
+			vim.defer_fn(function()
+				require("user.plugins.copilot")
+			end, 100)
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

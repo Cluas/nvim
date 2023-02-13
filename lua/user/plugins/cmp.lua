@@ -18,18 +18,29 @@ if vim.fn.empty(vim.fn.glob("~/.config/snippets")) == 0 then
 	require("luasnip/loaders/from_vscode").lazy_load({ paths = { "~/.config/snippets" } })
 end
 
--- Common function
-local check_backspace = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local icons = require("user.icons")
 local kind_icons = icons.kind
 
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 
 vim.g.cmp_active = true
+
+local buffer_fts = {
+	"markdown",
+	"toml",
+	"yaml",
+	"json",
+}
+
+local function contains(t, value)
+	for _, v in pairs(t) do
+		if v == value then
+			return true
+		end
+	end
+	return false
+end
 
 cmp.setup({
 	enabled = function()
@@ -78,7 +89,10 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		["<Right>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
+			local cs_ok, cs = pcall(require, "copilot.suggestion")
+			if cs_ok and cs.is_visible() then
+				cs.accept()
+			elseif cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.jumpable(1) then
 				luasnip.jump(1)
@@ -86,16 +100,10 @@ cmp.setup({
 				luasnip.expand_or_jump()
 			elseif luasnip.expandable() then
 				luasnip.expand()
-			elseif check_backspace() then
-				fallback()
 			else
 				fallback()
 			end
-		end, {
-			"i",
-			"s",
-		}),
-
+		end),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -110,38 +118,41 @@ cmp.setup({
 		}),
 	}),
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
+		fields = { "abbr", "kind", "menu" },
 		format = function(entry, vim_item)
+			local kind = vim_item.kind
 			vim_item.kind = kind_icons[vim_item.kind]
-
-			if entry.source.name == "cmp_tabnine" then
-				vim_item.kind = icons.misc.Robot
-			end
-
 			if entry.source.name == "emoji" then
 				vim_item.kind = icons.misc.Smiley
 				vim_item.kind_hl_group = "CmpItemKindEmoji"
 			end
+			if entry.source.name == "crates" then
+				vim_item.kind = icons.misc.Package
+				vim_item.kind_hl_group = "CmpItemKindCrate"
+			end
 
-			vim_item.menu = ""
+			vim_item.menu = " (" .. kind .. ") "
 			return vim_item
 		end,
 	},
 	sources = {
+		{ name = "crates", group_index = 1 },
+		--[[ { name = "copilot", group_index = 2 }, ]]
+		{ name = "nvim_lsp", group_index = 2 },
+		{ name = "nvim_lua", group_index = 2 },
+		{ name = "luasnip", group_index = 2 },
+		{
+			name = "buffer",
+			group_index = 2,
+			filter = function(_, ctx)
+				if not contains(buffer_fts, ctx.prev_context.filetype) then
+					return true
+				end
+			end,
+		},
 		{ name = "path", group_index = 2 },
-		{ name = "nvim_lsp", group_index = 2, keyword_length = 3 },
-		--[[ { name = "nvim_lsp_signature_help", group_index = 2 }, ]]
-		{ name = "nvim_lua", group_index = 2, keyword_length = 2 },
-		{ name = "luasnip", group_index = 2, keyword_length = 2 },
-		{ name = "buffer", group_index = 2, keyword_length = 2 },
-		{ name = "cmp_tabnine", group_index = 2, keyword_length = 2 },
 		{ name = "emoji", group_index = 2 },
 	},
-	confirm_opts = {
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
-	},
-
 	sorting = {
 		priority_weight = 2,
 		comparators = {
@@ -150,19 +161,23 @@ cmp.setup({
 			compare.score,
 			compare.recently_used,
 			compare.locality,
+			compare.kind,
 			compare.sort_text,
 			compare.length,
 			compare.order,
 		},
-	},
-	window = {
-		documentation = false,
-		completion = {
-			border = "rounded",
-			winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+		confirm_opts = {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = false,
 		},
-	},
-	experimental = {
-		ghost_text = true,
+		window = {
+			completion = {
+				border = "rounded",
+				winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+			},
+		},
+		experimental = {
+			ghost_text = true,
+		},
 	},
 })

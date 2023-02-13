@@ -10,8 +10,8 @@ end
 
 local servers = {
 	"jsonls",
-	"sumneko_lua",
 	"gopls",
+	"lua_ls",
 	"tsserver",
 	"yamlls",
 	"bashls",
@@ -22,6 +22,7 @@ local servers = {
 mason.setup()
 mason_lspconfig.setup({
 	ensure_installed = servers,
+	automatic_installation = true,
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -31,6 +32,11 @@ end
 
 local opts = nil
 
+local neodev_status_ok, neodev = pcall(require, "neodev")
+if neodev_status_ok then
+	neodev.setup()
+end
+
 for _, server in pairs(servers) do
 	opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
@@ -38,11 +44,6 @@ for _, server in pairs(servers) do
 	}
 
 	server = vim.split(server, "@")[1]
-
-	if server == "sumneko_lua" then
-		local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	end
 
 	if server == "rust_analyzer" then
 		local rust_opts = require("user.lsp.settings.rust_analyzer")
@@ -52,11 +53,9 @@ for _, server in pairs(servers) do
 		end
 
 		rust_tools.setup(rust_opts)
-		goto continue
 	end
 
 	lspconfig[server].setup(opts)
-	::continue::
 end
 
 local fidget_ok, fidget = pcall(require, "fidget")

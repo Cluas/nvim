@@ -51,10 +51,12 @@ for _, server in pairs(servers) do
 		if not rust_tools_status_ok then
 			return
 		end
-
 		rust_tools.setup(rust_opts)
 	end
-
+	if server == "gopls" then
+		local gopls_opts = require("user.lsp.settings.gopls")
+		opts = vim.tbl_deep_extend("force", gopls_opts, opts)
+	end
 	lspconfig[server].setup(opts)
 end
 

@@ -16,7 +16,7 @@ return {
 	gofumpt = true,
 	buildFlags = { "-tags", "integration" },
 	root_dir = function(fname)
-		local fullpath = vim.fn.expand(fname, ":p")
+		local fullpath = vim.fn.expand(fname .. ":p")
 		if string.find(fullpath, gopathmod) and lastRootPath ~= nil then
 			return lastRootPath
 		end

@@ -50,6 +50,13 @@ return packer.startup(function(use)
 
 	use("folke/neodev.nvim")
 
+	use({
+		"beauwilliams/focus.nvim",
+		config = function()
+			require("focus").setup()
+		end,
+	})
+
 	-- Dashboard
 	use("goolord/alpha-nvim")
 

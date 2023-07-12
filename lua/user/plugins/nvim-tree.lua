@@ -5,14 +5,12 @@ if not ok then
 	return
 end
 
-local config_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+local config_ok, _ = pcall(require, "nvim-tree.config")
 if not config_ok then
 	return
 end
 
 local icons = require("user.icons")
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
 
 local function on_attach(bufnr)
 	local api = require("nvim-tree.api")
@@ -20,6 +18,8 @@ local function on_attach(bufnr)
 	local function opts(desc)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
+
+	api.config.mappings.default_on_attach(bufnr)
 
 	-- Mappings migrated from view.mappings.list
 	--

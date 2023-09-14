@@ -13,7 +13,6 @@ local servers = {
 	"gopls",
 	"lua_ls",
 	"tsserver",
-	"yamlls",
 	"bashls",
 	"taplo",
 	"rust_analyzer",

@@ -5,11 +5,6 @@ if not ok then
 	return
 end
 
-local config_ok, _ = pcall(require, "nvim-tree.config")
-if not config_ok then
-	return
-end
-
 local icons = require("user.icons")
 
 local function on_attach(bufnr)

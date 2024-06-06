@@ -98,6 +98,28 @@ return packer.startup(function(use)
 	-- Tools
 	use("uga-rosa/translate.nvim") -- translate
 
+	use({
+		"epwalsh/obsidian.nvim",
+		tag = "*", -- recommended, use latest release instead of latest commit
+		requires = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+
+			-- see below for full list of optional dependencies 👇
+		},
+		config = function()
+			require("obsidian").setup({
+				workspaces = {
+					{
+						name = "cluas",
+						path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/cluas",
+					},
+				},
+				-- see below for full list of options 👇
+			})
+		end,
+	})
+
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
 	use("lunarvim/darkplus.nvim")

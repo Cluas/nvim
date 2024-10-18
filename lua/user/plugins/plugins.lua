@@ -67,6 +67,7 @@ return packer.startup(function(use)
 	-- File exporter
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-tree/nvim-web-devicons")
+	use("echasnovski/mini.icons")
 
 	-- StatusLine
 	use("nvim-lualine/lualine.nvim")

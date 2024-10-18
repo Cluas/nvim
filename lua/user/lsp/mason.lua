@@ -12,7 +12,7 @@ local servers = {
 	"jsonls",
 	"gopls",
 	"lua_ls",
-	"tsserver",
+	"ts_ls",
 	"bashls",
 	"taplo",
 	"rust_analyzer",

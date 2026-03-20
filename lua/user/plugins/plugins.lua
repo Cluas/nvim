@@ -186,6 +186,16 @@ return packer.startup(function(use)
 	use("nanotee/luv-vimdocs")
 	use("milisims/nvim-luaref")
 
+	-- Claude Code
+	use("folke/snacks.nvim")
+	use({
+		"coder/claudecode.nvim",
+		requires = { "folke/snacks.nvim" },
+		config = function()
+			require("user.plugins.claudecode")
+		end,
+	})
+
 	use({
 		"zbirenbaum/copilot.lua",
 		event = { "VimEnter" },
